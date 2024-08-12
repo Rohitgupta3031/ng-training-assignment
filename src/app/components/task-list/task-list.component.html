@@ -1,0 +1,109 @@
+<div class="task-list">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="30"
+        fill="currentColor"
+        class="bi bi-list"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+        />
+      </svg>
+      <a class="navbar-brand" href="#" style="margin-right: 1100px">Tasks</a>
+
+      <div>
+        <button
+          type="button"
+          id="nav-btn"
+          class="btn btn-warning btn-sm"
+          [routerLink]="['taskform']"
+          data-bs-toggle="modal"
+          data-bs-target="#modal"
+        >
+          New Task
+        </button>
+        <button type="button" id="nav-btn" class="btn btn-warning btn-sm">
+          Refresh
+        </button>
+
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="table-heading">
+          <input type="checkbox" name="chech" id="check" />
+        </th>
+        <th scope="col" class="table-heading">Assigned To</th>
+        <th scope="col" class="table-heading">Status</th>
+        <th scope="col" class="table-heading">Due Date</th>
+        <th scope="col" class="table-heading">Priority</th>
+        <th scope="col" class="table-heading">Comments</th>
+        <th scope="col" class="table-heading"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of tasks">
+        <th scope="row"><input type="checkbox" name="chech" id="check1" /></th>
+        <td class="table-user">{{ item.assignedTo }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.dueDate }}</td>
+        <td>{{ item.priority }}</td>
+        <td>{{ item.comments }}</td>
+        <td>
+          <div class="dropdown">
+            <a
+              class="btn btn dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" (click)="edit(item)">Edit</a></li>
+              <li>
+                <a class="dropdown-item" (click)="deleteTask(item._id)"
+                  >Delete</a
+                >
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <header class="bg-body-tertiary">
+    <nav aria-label="Page navigation example ">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+            >Previous</a
+          >
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<router-outlet></router-outlet>
